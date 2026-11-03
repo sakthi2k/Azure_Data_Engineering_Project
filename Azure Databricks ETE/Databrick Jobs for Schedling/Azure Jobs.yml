@@ -1,0 +1,71 @@
+resources:
+  jobs:
+    Azure_End_To_End_Pipeline:
+      name: Azure End_To_End_Pipeline
+      tasks:
+        - task_key: Parameters
+          notebook_task:
+            notebook_path: /Workspace/Users/UserDemo@gmail.com/ADF_Project/Azure
+              Databricks ETE/Parameters
+            source: WORKSPACE
+        - task_key: Bronze_AutoLoader_Ingestion
+          depends_on:
+            - task_key: Parameters
+          notebook_task:
+            notebook_path: /Workspace/Users/UserDemo@gmail.com/ADF_Project/Azure
+              Databricks ETE/Bronze_Layer
+            source: WORKSPACE
+        - task_key: Silver_Customer
+          depends_on:
+            - task_key: Bronze_AutoLoader_Ingestion
+          notebook_task:
+            notebook_path: /Workspace/Users/UserDemo@gmail.com/ADF_Project/Azure
+              Databricks ETE/silver_customers
+            source: WORKSPACE
+        - task_key: Silver_Orders
+          depends_on:
+            - task_key: Bronze_AutoLoader_Ingestion
+          notebook_task:
+            notebook_path: /Workspace/Users/UserDemo@gmail.com/ADF_Project/Azure
+              Databricks ETE/Silver_orders
+            source: WORKSPACE
+        - task_key: Silver_Products
+          depends_on:
+            - task_key: Bronze_AutoLoader_Ingestion
+          notebook_task:
+            notebook_path: /Workspace/Users/UserDemo@gmail.com/ADF_Project/Azure
+              Databricks ETE/silver_products
+            source: WORKSPACE
+        - task_key: Gold_Customers
+          depends_on:
+            - task_key: Silver_Customer
+            - task_key: Silver_Orders
+            - task_key: Silver_Products
+          notebook_task:
+            notebook_path: /Workspace/Users/UserDemo@gmail.com/ADF_Project/Azure
+              Databricks ETE/Gold_Customers
+            source: WORKSPACE
+        - task_key: Gold_Products
+          depends_on:
+            - task_key: Silver_Customer
+            - task_key: Silver_Orders
+            - task_key: Silver_Products
+          notebook_task:
+            notebook_path: /Workspace/Users/UserDemo@gmail.com/ADF_Project/Azure
+              Databricks ETE/Gold Products
+            source: WORKSPACE
+        - task_key: Fact_Orders
+          depends_on:
+            - task_key: Gold_Customers
+            - task_key: Gold_Products
+          notebook_task:
+            notebook_path: /Workspace/Users/UserDemo@gmail.com/ADF_Project/Azure
+              Databricks ETE/Gold Orders
+            source: WORKSPACE
+      git_source:
+        git_url: https://github.com/sakthi2k/ADF_Project/tree/main/Azure%20Databricks%20ETE
+        git_provider: gitHub
+        git_commit: Azure Databricks ETE
+      queue:
+        enabled: true
+      performance_target: PERFORMANCE_OPTIMIZED
