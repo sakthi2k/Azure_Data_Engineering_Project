@@ -1,5 +1,4 @@
 # Azure End-to-End Data Engineering Project
-![Azure–Databricks End-to-End Data Pipeline_1793686722340.png](./Azure–Databricks End-to-End Data Pipeline_1793686722340.png "Azure–Databricks End-to-End Data Pipeline_1793686722340.png")
 ## Project Overview
 
 This project demonstrates the implementation of an end-to-end data engineering pipeline using **Azure Data Factory (ADF), Azure Data Lake Storage Gen2 (ADLS Gen2), and Azure Databricks**. The solution ingests data from multiple sources, including APIs, CSV files, Parquet files, and real-time event streams, and processes it using the Medallion Architecture.
