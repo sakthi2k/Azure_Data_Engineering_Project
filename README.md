@@ -36,7 +36,7 @@ Databricks Workflows orchestrate and schedule pipeline tasks based on dependenci
 - **Orchestration:** Databricks Workflows
 - **Data Consumption:** Tableau, Power BI, Machine Learning
 
-![image_1793686796578.png](./image_1793686796578.png "image_1793686796578.png")
+
 ## Key Highlights
 
 - Built an end-to-end data pipeline integrating multiple data sources.
